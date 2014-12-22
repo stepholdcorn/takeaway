@@ -34,4 +34,10 @@ describe Customer do
 		customer.make_selections
 		expect(customer.order_placed?).to eq(false)
 	end
+
+	it 'should allow more than one type of pizza to be ordered' do
+		customer.make_selections
+		expect(customer.order_review.count).to eq(2)
+	end
+
 end
