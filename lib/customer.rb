@@ -2,7 +2,6 @@ class Customer
 
 	def initialize
 		@selection = []
-		@total = 0
 		@order_placed = false
 	end
 
@@ -18,6 +17,7 @@ class Customer
 			instructions
 			type = gets.chomp
 		end
+		p order_review
 		puts 'Please confirm the total number of pizzas to place order'
 		total = gets.chomp.to_i
 		total_confirm(total)
