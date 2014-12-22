@@ -5,14 +5,16 @@ class Customer
 		@order_placed = false
 	end
 
-	def view_menu(menu)
-		menu.show_menu
+	def view_menu(restaurant)
+		restaurant.show_menu
 	end
 
 	def make_selections
 		puts "Please enter a pizza"
-		selection = gets.chomp
-		@selection << selection
+		type = gets.chomp
+		puts "Please enter the quantity"
+		number = gets.chomp.to_i
+		@selection << {name: type, quantity: number}
 	end
 
 	def order_review
