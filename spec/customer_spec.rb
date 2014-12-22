@@ -15,13 +15,19 @@ describe Customer do
 		expect(customer.order_placed?).to eq(true)
 	end
 
-	it 'should be able to order a bbq pizza' do
+	it 'should be able to order one bbq pizza' do
 		customer.make_selections
-		expect(customer.order_review[0]).to eq(name: 'bbq', quantity: 1)
+		expect(customer.order_review).to eq([name: 'bbq', quantity: 1])
 	end
 
 	it 'should be able to enter the quantity' do
 		customer.make_selections
-		expect(customer.order_review[0]).to eq(name: 'bbq', quantity: 2)
+		expect(customer.order_review).to eq([name: 'bbq', quantity: 2])
+	end
+
+	it 'should be able to enter the total number of pizzas selected' do
+		customer.make_selections
+		customer.order_review
+		expect(customer.total_check).to eq(true)
 	end
 end
