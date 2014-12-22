@@ -11,14 +11,31 @@ class Customer
 	end
 
 	def make_selections
-		puts "Please enter a pizza"
-		type = gets.chomp
-		puts "Please enter the quantity"
-		number = gets.chomp.to_i
-		@selection << {name: type, quantity: number}
-		puts "Please confirm the total number of pizzas ordered"
+		type
+		number
+		@selection << {name: @type, quantity: @number}
+		confirm
+		if total_check == false
+			puts "Incorrect total"
+		else
+			place_order! 
+			puts "Order placed!"
+		end
+	end
+
+	def type
+		puts 'Please enter a pizza'
+		@type = gets.chomp
+	end
+
+	def number
+		puts 'Please enter the quantity'
+		@number = gets.chomp.to_i
+	end
+
+	def confirm
+		puts 'Please confirm the total number of pizzas to place order'
 		@total = gets.chomp.to_i
-		puts "Please place your order" if total_check == true
 	end
 
 	def total_check
@@ -28,7 +45,7 @@ class Customer
 			false
 		end
 	end
-	
+
 	def order_review
 		@selection
 	end

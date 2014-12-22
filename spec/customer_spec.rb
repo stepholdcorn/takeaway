@@ -27,7 +27,11 @@ describe Customer do
 
 	it 'should be able to enter the total number of pizzas selected' do
 		customer.make_selections
-		customer.order_review
-		expect(customer.total_check).to eq(true)
+		expect(customer.order_placed?).to eq(true)
+	end
+
+	it 'should not place the order if the total does not match the input' do
+		customer.make_selections
+		expect(customer.order_placed?).to eq(false)
 	end
 end
