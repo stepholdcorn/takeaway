@@ -24,3 +24,9 @@ The following classes/modules are used.
  Responsibilities        	|Collaborators
  ---------------------------|-------------------
  To contain items + prices  | Takeaway, Customer
+
+
+### Module - Phone 
+ Responsibilities        		|Collaborators
+ -------------------------------|-------------------
+ To contain texting facilities  | Takeaway, Customer
