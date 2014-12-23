@@ -3,12 +3,15 @@ require 'restaurant'
 describe Restaurant do 
 
 	let(:restaurant) {Restaurant.new}
-	let(:customer) {double :customer}
 
-	it 'should be able to receive an order' do
-		allow(customer).to receive(:place_order!)
-		restaurant.receive_order!(customer)
+	xit 'should be able to receive an order' do
+		restaurant.receive_order!
 		expect(restaurant.order_received?).to eq(true)
+	end
+
+	xit 'should be able to send a text confirmation' do
+		restaurant.send_text
+		expect(restaurant.text_sent?).to eq(true)
 	end
 	
 end

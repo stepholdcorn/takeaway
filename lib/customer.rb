@@ -9,7 +9,7 @@ class Customer
 		restaurant.show_menu
 	end
 
-	def make_selections
+	def make_selections(restaurant)
 		instructions
 		type = gets.chomp
 		until type.empty? do
@@ -21,6 +21,7 @@ class Customer
 		puts 'Please confirm the total number of pizzas to place order'
 		total = gets.chomp.to_i
 		total_confirm(total)
+		restaurant.receive_order!
 	end
 
 	def instructions
