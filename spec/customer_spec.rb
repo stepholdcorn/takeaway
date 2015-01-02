@@ -3,7 +3,7 @@ require 'customer'
 describe Customer do 
 
 	let(:customer) {Customer.new}
-	let(:restaurant) {double :restaurant, receive_order!: true}
+	let(:restaurant) {double :restaurant, receive_order!: true, type_verification: true}
 
 	it 'should be able to view the menu' do
 		expect(restaurant).to receive(:show_menu)
@@ -13,6 +13,11 @@ describe Customer do
 	it 'should be able to place an order' do
 		customer.place_order!
 		expect(customer.order_placed?).to eq(true)
+	end
+
+	it 'should not allow an item to be ordered if it is not on the menu' do
+		allow(restaurant).to receive(:type_verification) { false }
+		expect(customer.order_placed?).to eq(false)
 	end
 
 	xit 'should be able to order one bbq pizza' do

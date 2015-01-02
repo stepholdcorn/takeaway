@@ -12,10 +12,14 @@ class Customer
 	def make_selections(restaurant)
 		instructions
 		type = gets.chomp
-		until type.empty? do
-			collect_quantity(type)
-			instructions
-			type = gets.chomp
+		if restaurant.type_verification == true
+			until type.empty? do
+				collect_quantity(type)
+				instructions
+				type = gets.chomp
+			end
+		else
+			puts 'Please enter a pizza from the menu'
 		end
 		p order_review
 		puts 'Please confirm the total number of pizzas to place order'
