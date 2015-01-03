@@ -12,7 +12,6 @@ class Customer
 	def make_selections(restaurant)
 		instructions
 		collect_order
-		p order_review
 		confirmation
 		restaurant.receive_order!
 	end
@@ -21,22 +20,23 @@ class Customer
 		puts 'Please enter a pizza, to finish press return'
 	end
 
-	def collect_quantity(type)
-		puts 'Please enter the quantity'
-		number = gets.chomp.to_i
-		@selection << {name: type, quantity: number}
-	end
-
 	def collect_order
 		type = gets.chomp
 		until type.empty? do
 			collect_quantity(type)
-			instructions
 			type = gets.chomp
 		end
 	end
 
+	def collect_quantity(type)
+		puts 'Please enter the quantity'
+		number = gets.chomp.to_i
+		@selection << {name: type, quantity: number}
+		instructions
+	end
+
 	def confirmation
+		p order_review
 		puts 'Please confirm the total number of pizzas to place order'
 		total = gets.chomp.to_i
 		total_confirm(total)
