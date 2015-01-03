@@ -11,20 +11,9 @@ class Customer
 
 	def make_selections(restaurant)
 		instructions
-		type = gets.chomp
-		if restaurant.type_verification == true
-			until type.empty? do
-				collect_quantity(type)
-				instructions
-				type = gets.chomp
-			end
-		else
-			puts 'Please enter a pizza from the menu'
-		end
+		collect_order
 		p order_review
-		puts 'Please confirm the total number of pizzas to place order'
-		total = gets.chomp.to_i
-		total_confirm(total)
+		confirmation
 		restaurant.receive_order!
 	end
 
@@ -38,21 +27,27 @@ class Customer
 		@selection << {name: type, quantity: number}
 	end
 
-	def total_confirm(total)
-		if checker(total) == false
-			puts "Incorrect total, your order was not placed"
-		else
-			place_order! 
-			puts "Order placed!"
+	def collect_order
+		type = gets.chomp
+		until type.empty? do
+			collect_quantity(type)
+			instructions
+			type = gets.chomp
 		end
 	end
 
+	def confirmation
+		puts 'Please confirm the total number of pizzas to place order'
+		total = gets.chomp.to_i
+		total_confirm(total)
+	end
+
+	def total_confirm(total)
+		checker(total) == false ? (puts "Incorrect total, your order was not placed") : place_order! 
+	end
+
 	def checker(total)
-		if total == @selection.inject(0) { |memo, n| memo + n[:quantity] }
-			true
-		else
-			false
-		end
+		total == @selection.inject(0) { |memo, n| memo + n[:quantity] } ? true : false
 	end
 
 	def order_review
