@@ -23,8 +23,8 @@ class Customer
 
 	def collect_order(restaurant)
 		type = @input.gets.chomp
-		# raise 'Not on the menu' unless restaurant.menu[type]
 		until type.empty? do
+			raise 'Not on the menu' unless restaurant.menu.include? type 
 			collect_quantity(type)
 			type = @input.gets.chomp
 		end
