@@ -7,7 +7,7 @@ describe Menu do
 	let(:menu) {List.new}
 
 	it 'should contain a list of products' do
-		expect(menu.show_menu).to include(:name => "pepperoni", :price => 10)
+		expect(menu.show_menu).to include(pepperoni: 10)
 	end
 	
 end

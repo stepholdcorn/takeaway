@@ -1,6 +1,7 @@
 class Customer
 
-	def initialize
+	def initialize(input = STDIN)
+		@input = input
 		@selection = []
 		@order_placed = false
 	end
@@ -11,7 +12,7 @@ class Customer
 
 	def make_selections(restaurant)
 		instructions
-		collect_order
+		collect_order(restaurant)
 		confirmation
 		restaurant.receive_order!
 	end
@@ -20,17 +21,18 @@ class Customer
 		puts 'Please enter a pizza, to finish press return'
 	end
 
-	def collect_order
-		type = gets.chomp
+	def collect_order(restaurant)
+		type = @input.gets.chomp
+		# raise 'Not on the menu' unless restaurant.menu[type]
 		until type.empty? do
 			collect_quantity(type)
-			type = gets.chomp
+			type = @input.gets.chomp
 		end
 	end
 
 	def collect_quantity(type)
 		puts 'Please enter the quantity'
-		number = gets.chomp.to_i
+		number = @input.gets.chomp.to_i
 		@selection << {name: type, quantity: number}
 		instructions
 	end
@@ -38,7 +40,7 @@ class Customer
 	def confirmation
 		p order_review
 		puts 'Please confirm the total number of pizzas to place order'
-		total = gets.chomp.to_i
+		total = @input.gets.chomp.to_i
 		total_confirm(total)
 	end
 

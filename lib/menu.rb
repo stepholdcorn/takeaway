@@ -5,11 +5,11 @@ module Menu
 	end
 
 	def menu
-		menu = [ {name: 'margherita', price: 8} , 
-				{name: 'pepperoni', price: 10} ,
-				{name: 'hawaiian', price: 10} ,
-				{name: 'bbq', price: 11} ,
-				{name: 'feast', price: 12} ]
+		[ {margherita: 8}, 
+		{pepperoni: 10},
+		{hawaiian: 10},
+		{bbq: 11},
+		{feast: 12} ]
 	end
 
 end
