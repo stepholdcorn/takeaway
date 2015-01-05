@@ -22,25 +22,25 @@ describe Customer do
 	end
 
 	it 'should be able to order one bbq pizza' do
-		STDIN.should_receive(:gets).and_return("bbq", "1", "", "1")
+		allow(STDIN).to receive(:gets).exactly(4).times.and_return("bbq", "1", "", "1")
 		customer.make_selections(restaurant)
 		expect(customer.order_review).to eq([name: 'bbq', quantity: 1])
 	end
 
 	it 'should be able to enter the total number of pizzas selected to place order' do
-		STDIN.should_receive(:gets).and_return("bbq", "1", "", "1")
+		allow(STDIN).to receive(:gets).exactly(4).times.and_return("bbq", "1", "", "1")
 		customer.make_selections(restaurant)
 		expect(customer.order_placed?).to eq(true)
 	end
 
 	it 'should not place the order if the total does not match the input' do
-		STDIN.should_receive(:gets).and_return("bbq", "1", "", "2")
+		allow(STDIN).to receive(:gets).exactly(4).times.and_return("bbq", "1", "", "2")
 		customer.make_selections(restaurant)
 		expect(customer.order_placed?).to eq(false)
 	end
 
 	it 'should allow more than one type of pizza to be ordered' do
-		STDIN.should_receive(:gets).and_return("bbq", "1", "feast", "1", "", "2")
+		allow(STDIN).to receive(:gets).exactly(6).times.and_return("bbq", "1", "feast", "1", "", "2")
 		customer.make_selections(restaurant)
 		expect(customer.order_review.count).to eq(2)
 	end
