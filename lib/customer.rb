@@ -1,6 +1,6 @@
 class Customer
 
-	def initialize(input = STDIN)
+	def initialize(input = STDIN, output = STDOUT)
 		@input = input
 		@selection = []
 		@order_placed = false
